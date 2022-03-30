@@ -1,88 +1,53 @@
-// prompt windows
+var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' ];
+var specialChar = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+'];
 
-// password length prompt
-var passwordLength = function() {
-  var lengthInfo = prompt("How long would you like your password to be?", "Please select a number between 8-128");
-
-  // convert string answer into numerical value
-  lengthInfo = Number(lengthInfo);
-
-   // user cannot leave field blank 
-   if (lengthInfo === "" || lengthInfo === null) {
-    window.alert("Please enter a number between 8-128");
-    return passwordLength();
-  }
-
-  // user must choose number between 8-128
-  if (lengthInfo < 8 || lengthInfo > 128) {
-    window.alert("Please enter a number between 8-128");
-    return passwordLength();
-  }
-
-   // user cannot enter anything except for a numbeR????
-  // if (lengthInfo != Number ) {
-   // window.alert("Please enter a number between 8-128");
-  //  return passwordLength();
- // }
-
- // when conditions are met, continue to next prompt
- if (passwordLength) {
-   passwordLower();
- }
-}
-
-// lowercase letters
-var passwordLower = function(){
-  var lengthInfo = prompt("Would you like to include lowercase letters?", "Please type Y or N");
-
-
-}
-
-
-
-// !generator functions!
-// random lowercase letter
-function getRandomLower() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
-// random uppercase letter 
-function getRandomUpper() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-// random number
-function getRandomNumber() {
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-// random special character
-function getRandomSymbol() {
-  const symbols = '!@#$%^&*(){}[]=<>/,.';
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-// how to call these functions
-const randomFunc = {
-  lower: getRandomLower,
-  upper: getRandomUpper,
-  number: getRandomNumber,
-  symbol: getRandomSymbol,
-};
-
-
-
-
-
-// define generate password function
 function generatePassword() {
+// window prompts
+var passwordLength = prompt('How many characters would you like your password', 'Please enter a number between 1-128');
+  if (passwordLength < 8 || passwordLength > 128) {
+    window.alert("Please select a number between 8-128");
+  } else {
+    var number = confirm("would you like numbers in you password?");
+    var capital = confirm("Do you want uppercase letters in your password?");
+    var special = confirm("Would you like special characters in your password?");
+    var lower = confirm("would you like lowercase letters in your password?");
+  }
+  var resultArray = [];
+  if (number === true) {
+    resultArray = resultArray.concat(numbers);
+  } else if (number === false) {
+    ""
+  }
 
-// 1 prompt user for password criteria
-//  a. password length between 8-128
-//  b. Lowercase, uppercase, numbers, special characters
-// 2 Validate the input 
-// 3 generate password based on criteria
+  if (capital === true) {
+    resultArray = resultArray.concat(upperCase);
+  } else if (capital === false) {
+    ""
+  }
 
+  if (special === true) {
+    resultArray = resultArray.concat(specialChar);
+  } else if (special === false) {
+    ""
+  }
 
-// 4 Display generated password on the page 
-  return "Generated password will go here!";
+  if (lower === true) {
+    resultArray = resultArray.concat(lowerCase);
+  } else if (lower === false) {
+    ""
+  }
+  
+   // console log variables 
+  var password =''
+  for (var i = 0; i < passwordLength; i++ ) {
+    var index = Math.floor(Math.random() * resultArray.length)  
+    var char = resultArray[index]; 
+    password = password + char
+  }
+
+  return password;
 }
 
 
@@ -102,5 +67,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-generateBtn.addEventListener("click", passwordLength , );
+
  
