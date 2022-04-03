@@ -7,4 +7,4 @@
 https://alknight17.github.io/password-gen/
 
 ## Screenshot 
-[password-gen](/password-gen/images/password-gen.png)
+[password-gen](./assets/images/password-gen.png)
